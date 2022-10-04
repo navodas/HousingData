@@ -1,0 +1,1 @@
+This project contains housing prices data collected in the Västra Götaland region in Sweden using the hemnt real estate website.
