@@ -10,7 +10,8 @@ This project contains housing prices data collected in the Västra Götaland reg
 3.  **Additional information** were collected for a subset of instances (21611) usinng an updated web scraper. Refer to (Webscraper_for_additional_data.ipynb)
 4. A **polynomial regression model** is developed for predicting the housing prices. Refer to (Linear_Regression_with_full_data.ipynb)
 5. The model is deployed as a **Flask web aplication** on Heroku. Refer to  (app.py) and (templates/index.html).
-6. Two **interactive Tableau dashboards** are cretaed and hosted on public Tableau platform.
+    - https://h-predictor.herokuapp.com/predict
+7. Two **interactive Tableau dashboards** are cretaed and hosted on public Tableau platform.
     - https://public.tableau.com/app/profile/navodas/viz/Housingprices_16646201439710/Housingprices
     - https://public.tableau.com/app/profile/navodas/viz/Housingpricespermunicipality/Municipalityinfo
 
