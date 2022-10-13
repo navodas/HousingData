@@ -7,7 +7,6 @@ from flask import Flask, request, render_template
 from sklearn import preprocessing
 import pickle
 import json
-from collections.abc import Mapping
 
 
 
