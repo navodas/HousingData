@@ -1,0 +1,744 @@
+
+<html class="formstyle">
+    <head>
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                font-family: Verdana, sans-serif;
+                font-size: 13px;
+            }
+    
+            .formstyle {
+                background-color: #f5f5f5;
+            }
+    
+                .formstyle body {
+                    background: transparent;
+                }
+    
+                .formstyle .customform, .customform {
+                    background-color: #fff;
+                    border: 1px solid transparent;
+                }
+    
+            .customform {
+                margin: 0px auto;
+                padding-top: 0px;
+                width: 680px;
+            }
+    
+            .field-container {
+                list-style: none;
+                list-style-position: outside;
+                margin: 0px;
+                padding: 0px;
+            }
+    
+            .formrow {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                margin: 0px;
+                display: block;
+            }
+    
+                .formrow.formcol {
+                    display: inline-block;
+                }
+    
+    
+            .top-header {
+                background-color: rgb(160, 216, 248);
+                height: 40px;
+            }
+    
+            .section-header {
+                background-color: rgb(160, 216, 248);
+                height: 30px;
+                margin: 0px 35px;
+            }
+    
+                .section-header label {
+                    color: whitesmoke;
+                    padding: 5px 0px 5px 10px;
+                }
+    
+            .sectionborder {
+                padding: 12px 0;
+                margin: 12px 36px 18px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+    
+            .form-header-group {
+                background: transparent;
+                border: none;
+                padding: 24px 0;
+                margin: 12px 36px 18px;
+                border-bottom: 1px solid #e3e3e3;
+            }
+    
+                .form-header-group .form-header {
+                    color: #000;
+                    margin: 0px;
+                    font-size: 1.714em;
+                }
+    
+            .fieldlabel {
+                color: #555;
+            }
+    
+            .field-textbox, select {
+                width: 250px;
+            }
+    
+            .field-textarea {
+                min-height: 50px;
+                min-width: 560px;
+                max-width: 560px;
+            }
+    
+            .fieldlabel {
+                display: block;
+                white-space: normal;
+                font-weight: bold;
+                margin-bottom: 7px;
+                float: left;
+            }
+    
+            .required {
+                margin-left: 4px;
+                color: red;
+            }
+    
+            .formrow {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                margin: 6px 0;
+            }
+    
+            .col1 {
+                padding-left: 61px;
+                clear: both;
+            }
+    
+            .field-textbox, .field-textarea {
+                padding: 3px;
+                margin-left: 0;
+                border: 1px solid #ccc;
+                font-size: 1em;
+                line-height: 1.071em;
+                background-color: #fff;
+                font-family: Verdana, sans-serif;
+            }
+    
+            .formcol {
+                clear: none;
+                float: left;
+                white-space: nowrap;
+                width: 45%;
+            }
+    
+            .clear {
+                clear: both;
+            }
+        </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+    </head>
+
+    <body>
+
+
+        
+        <form action="{{ url_for('predict') }}" method="POST">
+        <div id="customform" class="customform">
+            <ul class="field-container">
+                <li>
+                    <div class="top-header"></div>
+                </li>
+                <li>
+                    <div class="form-header-group">
+                        <div>
+                            <h1 style="text-align:center" class="form-header">
+                                Housing Price Prediction 
+                                <h2 style="text-align:center"> Västra Götaland County - Sweden </h2>
+                            </h1>
+                            
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+
+                <li class="formrow formcol">
+                    <label class="fieldlabel" for="house_type">
+                        House Type
+                    </label>
+                    <label class="fieldlabel required">*</label>
+                    <div class="clear">
+                        <select  name="house_type" id="house_type" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                        </select>
+                    </div>
+                </li>
+
+                
+                <script>    
+
+                    var dict = {}
+                    dict["Apartment"]=0.0;
+                    dict["House"]=4.0;
+                    dict["Farm House, w/o agriculture"]=2.0;
+                    dict["Holiday Home"]=3.0;
+                    dict["Unspecified (Town/Semi-detached/Chain)"]=7.0;
+                    dict["Town House"]=6.0;
+                    dict["Semi-detached House"]=5.0;
+                    dict["Chain house"]=1.0;
+
+
+                    var house_type  = document.getElementById("house_type")                        
+                
+                        for (var key in dict) 
+                          {
+                            var option =document.createElement("OPTION"),
+                                txt = document.createTextNode(key);   
+                            option.appendChild(txt);
+                            option.setAttribute("value",dict[key]);
+                            house_type.insertBefore(option,house_type.lastChild);
+                          }
+    
+                          $(document).ready(function()
+                            {
+                                $("#house_type").on("change",function()
+                                {
+                                    var selected_house_type =$("#house_type").val();
+
+                                });
+                            })
+    
+    
+                    </script>
+      
+
+
+
+
+
+
+
+                 <li class="formrow formcol">
+                   <label class="fieldlabel" for="letting_form">
+                       Letting Form
+                   </label>
+                   <label class="fieldlabel required">*</label>
+                   <div class="clear">
+                       <select name="letting_form" id="letting_form" class="field-textbox" required>
+                       <option value="">(Select one)</option>
+                       </select>
+                   </div>
+               </li>
+  
+               <script>    
+
+                     var dict = {}
+                     dict["Right of residence"]=4;
+                     dict["Right of ownership"]=3;
+                     dict["Share in housing association"]=5;
+                     dict["Co-operative housing"]=0;
+                     dict["Land right"]=1;
+                     dict["Other"]=2
+
+                    var letting_form  = document.getElementById("letting_form")
+            
+                    for (var key in dict) 
+                          {
+                            var option =document.createElement("OPTION"),
+                                txt = document.createTextNode(key);   
+                            option.appendChild(txt);
+                            option.setAttribute("value",dict[key]);
+                            letting_form.insertBefore(option,letting_form.lastChild);
+                          }
+    
+                          $(document).ready(function()
+                            {
+                                $("#letting_form").on("change",function()
+                                {
+                                    var selected_letting_form =$("#letting_form").val();
+
+                                });
+                            })
+
+                </script>
+  
+
+
+                <li class="formrow formcol">
+                    <label class="fieldlabel" for="askingprice">
+                        Asking Price (Begärt pris)
+                    </label>
+                    <label class="fieldlabel required">*</label>
+                    <div class="clear">
+                        <input name="askingprice" type="number" id="askingprice" class="field-textbox" required />
+                    </div>
+                </li>
+               
+
+                <li class="formrow formcol">
+                    <label class="fieldlabel" for="monthly_fee">
+                        Monthly Fee (Avgift/månad) 
+                    </label>
+                    <label class="fieldlabel required">*</label>
+                    <div class="clear">
+                        <input name="monthly_fee" type="number" id="monthly_fee" class="field-textbox" required />
+                    </div>
+                </li>
+
+
+                   <li class="formrow formcol">
+                     <label class="fieldlabel" for="operating_cost'">
+                      Operating Cost (Driftskostnad)
+                     </label>
+                     <div class="clear">
+                         <input name="operating_cost" type="number" id="operating_cost" class="field-textbox" placeholder="Not Specified" required/>
+                     </div>
+                 </li>
+
+
+               <li class="formrow formcol">
+                <label class="fieldlabel" for="num_rooms'">
+                    Number of Rooms
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <input name="num_rooms"  type="number" id="num_rooms" class="field-textbox" required/>
+                </div>
+              </li>
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="municipality">
+                    Municipality (Kommun)
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <select name="municipality" id="municipality" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                    </select>
+                </div>
+            </li>
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="municipality_tax">
+                    Municipality Tax Rate
+                </label>
+                <div class="clear">
+                <input type="text" name="municipality_tax" id="municipality_tax" class="field-textbox" style="background-color:#c7c5c1" readonly>   
+                <br>
+                <small class="help_text_style">2022 rates.</small>
+                </div>
+            </li>
+
+            <script>    
+                var dict = {}
+            
+                dict["Ale kommun"]=0.0;
+                dict["Alingsås kommun"]=1.0;
+                dict["Bengtsfors kommun"]=2.0;
+                dict["Bollebygds kommun"]=3.0;
+                dict["Borås kommun"]=4.0;
+                dict["Dals Eds kommun"]=5.0;
+                dict["Essunga kommun"]=6.0;
+                dict["Falköpings kommun"]=7.0;
+                dict["Färgelanda kommun"]=8.0;
+                dict["Grästorps kommun"]=9.0;
+                dict["Gullspångs kommun"]=10.0;
+                dict["Göteborgs kommun"]=11.0;
+                dict["Götene kommun"]=12.0;
+                dict["Herrljunga kommun"]=13.0;
+                dict["Hjo kommun"]=14.0;
+                dict["Härryda kommun"]=15.0;
+                dict["Karlsborgs kommun"]=16.0;
+                dict["Kungälvs kommun"]=17.0;
+                dict["Lerums kommun"]=18.0;
+                dict["Lidköpings kommun"]=19.0;
+                dict["Lilla Edets kommun"]=20.0;
+                dict["Lysekils kommun"]=21.0;
+                dict["Mariestads kommun"]=22.0;
+                dict["Marks kommun"]=23.0;
+                dict["Melleruds kommun"]=24.0;
+                dict["Munkedals kommun"]=25.0;
+                dict["Mölndals kommun"]=26.0;
+                dict["Orust kommun"]=27.0;
+                dict["Partille kommun"]=28.0;
+                dict["Skara kommun"]=29.0;
+                dict["Skövde kommun"]=30.0;
+                dict["Sotenäs kommun"]=31.0;
+                dict["Stenungsunds kommun"]=32.0;
+                dict["Strömstads kommun"]=33.0;
+                dict["Svenljunga kommun"]=34.0;
+                dict["Tanums kommun"]=35.0;
+                dict["Tibro kommun"]=36.0;
+                dict["Tidaholms kommun"]=37.0;
+                dict["Tjörns kommun"]=38.0;
+                dict["Tranemo kommun"]=39.0;
+                dict["Trollhättans kommun"]=40.0;
+                dict["Töreboda kommun"]=41.0;
+                dict["Uddevalla kommun"]=42.0;
+                dict["Ulricehamns kommun"]=43.0;
+                dict["Vara kommun"]=44.0;
+                dict["Vänersborgs kommun"]=45.0;
+                dict["Vårgårda kommun"]=46.0;
+                dict["Åmåls kommun"]=47.0;
+                dict["Öckerö kommun"]=48.0;
+            
+            
+                var dict_t = {}
+                dict_t["Ale kommun"]=21.87;
+                dict_t["Alingsås kommun"]=21.36;
+                dict_t["Bengtsfors kommun"]=22.92;
+                dict_t["Bollebygds kommun"]=21.59;
+                dict_t["Borås kommun"]=21.31;
+                dict_t["Dals Eds kommun"]=23.21;
+                dict_t["Essunga kommun"]=21.57;
+                dict_t["Falköpings kommun"]=21.95;
+                dict_t["Färgelanda kommun"]=22.91;
+                dict_t["Grästorps kommun"]=21.99;
+                dict_t["Gullspångs kommun"]=22.49;
+                dict_t["Göteborgs kommun"]=21.12;
+                dict_t["Götene kommun"]=22.12;
+                dict_t["Herrljunga kommun"]=21.94;
+                dict_t["Hjo kommun"]=21.57;
+                dict_t["Härryda kommun"]=20.5;
+                dict_t["Karlsborgs kommun"]=21.32;
+                dict_t["Kungälvs kommun"]=21.44;
+                dict_t["Lerums kommun"]=20.65;
+                dict_t["Lidköpings kommun"]=21.26;
+                dict_t["Lilla Edets kommun"]=22.37;
+                dict_t["Lysekils kommun"]=22.46;
+                dict_t["Mariestads kommun"]=21.26;
+                dict_t["Marks kommun"]=21.51;
+                dict_t["Melleruds kommun"]=22.6;
+                dict_t["Munkedals kommun"]=23.38;
+                dict_t["Mölndals kommun"]=20.51;
+                dict_t["Orust kommun"]=22.61;
+                dict_t["Partille kommun"]=19.96;
+                dict_t["Skara kommun"]=21.5;
+                dict_t["Skövde kommun"]=21.61;
+                dict_t["Sotenäs kommun"]=21.99;
+                dict_t["Stenungsunds kommun"]=21.64;
+                dict_t["Strömstads kommun"]=21.91;
+                dict_t["Svenljunga kommun"]=22.05;
+                dict_t["Tanums kommun"]=21.56;
+                dict_t["Tibro kommun"]=21.21;
+                dict_t["Tidaholms kommun"]=22.07;
+                dict_t["Tjörns kommun"]=21.71;
+                dict_t["Tranemo kommun"]=21.5;
+                dict_t["Trollhättans kommun"]=22.36;
+                dict_t["Töreboda kommun"]=21.72;
+                dict_t["Uddevalla kommun"]=22.16;
+                dict_t["Ulricehamns kommun"]=21.05;
+                dict_t["Vara kommun"]=21.77;
+                dict_t["Vänersborgs kommun"]=22.21;
+                dict_t["Vårgårda kommun"]=21.61;
+                dict_t["Åmåls kommun"]=22.46;
+                dict_t["Öckerö kommun"]=21.56;
+
+
+                
+               //var municipality  = document.getElementById("municipality")
+            
+               for (var key in dict) 
+                     {
+                       var option =document.createElement("OPTION"),
+                           txt = document.createTextNode(key);   
+                       option.appendChild(txt);
+                       option.setAttribute("value",dict[key]);
+                       municipality.insertBefore(option,municipality.lastChild);
+                     }
+
+                     
+                    $("#municipality").change(function()
+                        {
+                            var selected_municipality =$("#municipality").val();
+
+                            var key = $("#municipality").find("option:selected").text();
+                            var selected_tax_rate = dict_t[key];
+
+                            $("#municipality_tax").val(dict_t[key]);
+
+                        });
+            
+            </script>
+
+                 
+
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="agent">
+                    Agent
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <select name="agent" id="agent" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                    </select>
+                </div>
+            </li>
+
+
+            <script>    
+                var dict_a = {}
+                dict_a["AB"]=0.0;
+                dict_a["Ahre"]=1.0;
+                dict_a["Alvhem"]=2.0;
+                dict_a["Askengren"]=3.0;
+                dict_a["BOkedjan"]=4.0;
+                dict_a["Bjurfors"]=5.0;
+                dict_a["Bocentrum"]=6.0;
+                dict_a["Bostada"]=7.0;
+                dict_a["BostadsForm"]=8.0;
+                dict_a["Bostadsbutiken"]=9.0;
+                dict_a["Bratting"]=10.0;
+                dict_a["Broberg"]=11.0;
+                dict_a["CHRISTANDER"]=12.0;
+                dict_a["ERA"]=13.0;
+                dict_a["Ebad"]=14.0;
+                dict_a["Eklund"]=15.0;
+                dict_a["Elmgrens"]=16.0;
+                dict_a["Entrance"]=17.0;
+                dict_a["Entré"]=18.0;
+                dict_a["Erik"]=19.0;
+                dict_a["Fastighetsbyrån"]=20.0;
+                dict_a["Flinks"]=21.0;
+                dict_a["GBGFAST"]=22.0;
+                dict_a["Gofab"]=23.0;
+                dict_a["Harald"]=24.0;
+                dict_a["Helins"]=25.0;
+                dict_a["Hemm"]=26.0;
+                dict_a["Homemäklaren"]=27.0;
+                dict_a["Husbutiken"]=28.0;
+                dict_a["HusmanHagberg"]=29.0;
+                dict_a["Kinnekulle"]=30.0;
+                dict_a["Kvarteret"]=31.0;
+                dict_a["LISTED"]=32.0;
+                dict_a["Lisenstedt"]=33.0;
+                dict_a["Lundin"]=34.0;
+                dict_a["Lysekilsmäklarna"]=35.0;
+                dict_a["Länsförsäkringar"]=36.0;
+                dict_a["MOHV"]=37.0;
+                dict_a["Marton"]=38.0;
+                dict_a["Mäklarbyrån"]=39.0;
+                dict_a["Mäklarhuset"]=40.0;
+                dict_a["Mäklarna"]=41.0;
+                dict_a["Mäklarringen"]=42.0;
+                dict_a["Next-Home"]=43.0;
+                dict_a["Norban"]=44.0;
+                dict_a["Ny"]=45.0;
+                dict_a["Redcarpet"]=46.0;
+                dict_a["Residence"]=47.0;
+                dict_a["Reveny"]=48.0;
+                dict_a["SIGNHOME"]=49.0;
+                dict_a["SkandiaMäklarna"]=50.0;
+                dict_a["Skara"]=51.0;
+                dict_a["Skeppsholmen"]=52.0;
+                dict_a["Stadshem"]=53.0;
+                dict_a["Stefanssons"]=54.0;
+                dict_a["Strandvägens"]=55.0;
+                dict_a["SveaMäklarna"]=56.0;
+                dict_a["Svensk"]=57.0;
+                dict_a["Svenska"]=58.0;
+                dict_a["Urban"]=59.0;
+                dict_a["Västsvenska"]=60.0;
+                dict_a["Våningen"]=61.0;
+                dict_a["Warberg"]=62.0;
+            
+               var agent  = document.getElementById("agent")
+            
+               for (var key in dict_a) 
+                     {
+                       var option =document.createElement("OPTION"),
+                           txt = document.createTextNode(key);   
+                       option.appendChild(txt);
+                       option.setAttribute("value",dict_a[key]);
+                       agent.insertBefore(option,agent.lastChild);
+                     }
+            
+                     $(document).ready(function()
+                       {
+                           $("#agent").on("change",function()
+                           {
+                               selected_agent =$("#agent").val();
+
+                           });
+                       })
+            </script>
+
+            
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="balcony">
+                    Balcony available?
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <select name="balcony" id="balcony" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                    </select>
+                </div>
+            </li>
+
+
+
+            <script>    
+                var dict = {}
+                dict["Yes"]=0.0;
+                dict["No"]=1.0;
+                dict["Not specified"]=0.0;
+               var balcony  = document.getElementById("balcony")
+            
+               for (var key in dict) 
+                     {
+                       var option =document.createElement("OPTION"),
+                           txt = document.createTextNode(key);   
+                       option.appendChild(txt);
+                       option.setAttribute("value",dict[key]);
+                       balcony.insertBefore(option,balcony.lastChild);
+                     }
+            
+                     $(document).ready(function()
+                       {
+                           $("#balcony").on("change",function()
+                           {
+                               var selected_balcony =$("#balcony").val();
+
+                           });
+                       })
+            </script>
+
+
+
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="lift">
+                    Lift available ?
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <select name="lift" id="lift" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                    </select>
+                </div>
+            </li>
+
+
+            <script>    
+                var dict = {}
+                dict["Yes"]=0.0;
+                dict["No"]=1.0;
+                dict["Not specified"]=0.0;
+               var lift  = document.getElementById("lift")
+            
+               for (var key in dict) 
+                     {
+                       var option =document.createElement("OPTION"),
+                           txt = document.createTextNode(key);   
+                       option.appendChild(txt);
+                       option.setAttribute("value",dict[key]);
+                       lift.insertBefore(option,lift.lastChild);
+                     }
+            
+                     $(document).ready(function()
+                       {
+                           $("#lift").on("change",function()
+                           {
+                               var selected_lift =$("#lift").val();
+                           });
+                       })
+            </script>
+
+
+            
+
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="listed_year">
+                   Listed year
+                </label>
+                <label class="fieldlabel required">*</label>
+                <div class="clear">
+                    <select name="listed_year" id="listed_year" class="field-textbox" required>
+                        <option value="">(select one)</option>
+                    </select>
+                </div>
+            </li>
+
+            <script language="javascript">    
+                var listed_year  = document.getElementById("listed_year"),
+                arr = ["2022", "2021", "2020", "2014", "2019", "2017", "2018", "2016", "2015", "2013"];
+                arr.sort(); 
+                arr.reverse();       
+                    for (var i=0; i < arr.length;++i)
+                      {
+                        var option =document.createElement("OPTION"),
+                            txt = document.createTextNode(arr[i]);
+                        option.appendChild(txt);
+                        option.setAttribute("value",arr[i]);
+                        listed_year.insertBefore(option,listed_year.lastChild);
+                      }
+                      var selected_listed_year =$("#listed_year").val();
+            </script>
+
+            
+                        
+        
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="constructed_year'">
+                 Constructed Year
+                </label>
+                <div class="clear">
+                    <input type="text" name="constructed_year" id="constructed_year" class="field-textbox" placeholder="Not Specified"/>
+                </div>
+            </li>
+
+
+            <li class="formrow formcol">
+                <label class="fieldlabel" for="floors'">
+                    Floor number 
+                </label>
+                <div class="clear">
+                    <input type="text" name="floors" id="floors" class="field-textbox" placeholder="Not Specified" />
+                </div>
+              </li>
+
+              <li class="formrow formcol">
+                <button id="predict_button" type="submit" class="btn btn-primary btn-block btn-large" style="position: absolute; left: 45%; transform: translateX(-50%);">Predict</button>
+              </li>
+
+
+              <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+
+
+
+        </form>
+                <li class="formrow clear">
+                    <div class="section-header">
+                        <label class="fieldlabel">
+                            Predicted price
+                        </label>
+                    </div>
+                </li>
+                <br>
+                <b>{{ predicted_price }}</b>
+
+
+
+            
+
+    </body>
+    </html>
+    
