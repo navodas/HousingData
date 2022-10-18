@@ -1,7 +1,7 @@
 # Housing price prediction for Västra Götaland region in Sweden.
 
 ### Introduction 
-This project contains housing prices data collected in the Västra Götaland region in Sweden using the hemnet real estate website. The project is carried out in below steps and purely for academic purposes.
+This project contains housing prices data collected in the Västra Götaland region in Sweden using the hemnet real estate website. The project is carried out in below steps. These data are purely for personal/ academic purposes.
 
 
 ### Project steps
@@ -16,11 +16,7 @@ This project contains housing prices data collected in the Västra Götaland reg
     - https://public.tableau.com/app/profile/navodas/viz/Housingpricespermunicipality/Municipalityinfo
 
 
-### Data Files
-
-1. basic_housing_data.csv - Basic attributes about the Swedish housing data (59989*11).
-2. additional_housing_data.csv - Additional five attributes are introduced in this dataset with respect to a subset of instances(21612*16).
-3. municipality.csv - Municipality list in Västra Götaland region in Sweden.
+### Data Files - Not shared to do possible copy right violations.
 
 ### Other Files
 1. Webscraper.ipynb - This workbook contains the webscraper for crawling the hemnet site to collect housing prices.
