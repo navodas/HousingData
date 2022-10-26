@@ -4,6 +4,9 @@
 This project contains housing prices data collected in the Västra Götaland region in Sweden using the hemnet real estate website. The project is carried out in below steps. These data are purely for personal/ academic purposes.
 
 
+![Tableau dashboard on the housing data](https://github.com/navodas/HousingData/dashboard.png?raw=true)
+
+
 ### Project steps
 1. A Web scraper is developed to grab **basic information** on the house sales on the hemnet website. BeautifulSoup and Selenium python packages are used for the task. After cleaning 63877 data instances were retained. Refer to (Webscraper.ipynb).
 2. A comprehensive **EDA** is perfomed on the collected housing data. Refer to (EDA_housing_data.ipynb).
