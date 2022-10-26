@@ -4,7 +4,8 @@
 This project contains housing prices data collected in the Västra Götaland region in Sweden using the hemnet real estate website. The project is carried out in below steps. These data are purely for personal/ academic purposes.
 
 
-![Tableau dashboard on the housing data](https://github.com/navodas/HousingData/dashboard.png?raw=true)
+![Tableau dashboard on the housing data](https://github.com/navodas/HousingData/blob/main/dashboard.png?raw=true)
+
 
 
 ### Project steps
