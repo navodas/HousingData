@@ -26,12 +26,30 @@ This project contains housing prices data collected in the Västra Götaland reg
 
 ### Data Files - Not shared to do possible copy right violations.
 
+### Data description
+  - Soldprice	 - The target variable to predict that indicates the actual sale price of the property.
+  - Monthly_fee	- Mortgage
+  - Agent	- The real estate agent who sold the property.
+  - Municipality - The municipality where the property is located.
+  - Municipality_tax_rate	- The local tax rate of the Municipality.
+  - Number of rooms	- Number of available rooms including the living room.
+  - House type - Property type? Apartment, House, Farm House, w/o agriculture, Holiday Home, Unspecified (Town/Semi-detached/Chain), Town House, Semi-detached House, Chain house
+  - Asking price - Price demanded by the seller.
+  - Balcony	- A balcony is available or not?
+  - Construction year	- year the building is constructed.
+  - Operating cost - Monthly operations cost.	
+  - Letting form - Type of ownership.	
+  - Floor Number - Floor the apartment is located.	
+  - Lift Availability	- A lift is available or not?
+  - Year - Year the property is sold.
+
 ### Other Files
 1. Webscraper.ipynb - This workbook contains the webscraper for crawling the hemnet site to collect housing prices.
 2. EDA_housing_data.ipynb - Comprehensive analysis on the basic housing price information collected using Webscraper.ipynb. 
 3. Linear_Regression_with_basic_data.ipynb - Training linear regression models on the basic data.
 4. Webscraper_for_additional_data.ipynb -  Webscraper for collecting additional attributes on a subset of housing data previously collected.
 5. Linear_Regression_with_full_data.ipynb - Training linear regression models on the additional data collected. 
+6. Model_selection.ipynb - This note book contains training a RandomForestRegressor for predicting the housing prices along with feature selection, outlier handling, and model selection based on randomized grid search.
 6. lr_predictor.pkl - Final polynomial regression model saved for deploying.
 7. app.py - Flask web app.
 8. templetes/index.html - Front-end of the web app.
